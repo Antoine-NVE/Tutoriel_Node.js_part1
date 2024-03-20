@@ -1,10 +1,7 @@
-const fs = require('fs');
+const { multiply, divide } = require('./functions');
+const { chain } = require('mathjs');
 
-// readFileSync -> lire le contenu d'un fichier
-// writeFileSync -> écrire un fichier avec un contenu
+console.log(multiply(5, 10));
+console.log(divide(5, 10));
 
-fs.writeFileSync('test.txt', 'Mon deuxième fichier !');
-console.log('Le fichier test.txt a été créé !');
-
-const fileContent = fs.readFileSync('test.txt', 'utf-8');
-console.log(fileContent);
+console.log(chain(3).add(4).multiply(2).done());;
