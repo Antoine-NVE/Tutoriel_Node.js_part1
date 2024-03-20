@@ -1,23 +1,25 @@
-// const request = require('postman-request');
+const city = 'paris';
 
-// request('https://dog.ceo/api/breeds/image/random', (error, response, body) => {
-//     const { message, status } = JSON.parse(body);
-//     console.log(message);
-//     console.log(status);
-// });
+// fetch(`https://www.prevision-meteo.ch/services/json/${city}`)
+//     .then((response) => response.json())
+//     .then((response) => {
+//         const { city_info, current_condition, fcst_day_0 } = response;
+//         console.log(city_info.country);
+//     });
 
-// request(
-//     'https://api.thecatapi.com/v1/images/search',
-//     (error, response, body) => {
-//         const catPicture = JSON.parse(body);
-//         console.log(catPicture[0].url);
-//     }
-// );
+async function fetchWeather(city) {
+    response = await fetch(
+        `https://www.prevision-meteo.ch/services/json/${city}`
+    );
+    response = await response.json();
+    const { city_info, current_condition } = response;
+    // prettier-ignore
+    console.log(`
+        Le nom de la ville est ${city_info.name}.
+        Le pays est ${city_info.country}.
+        Il fait ${current_condition.tmp}° C.
+        Le temps est ${current_condition.condition.toLowerCase()}.
+    `);
+}
 
-fetch('https://dog.ceo/api/breeds/image/random')
-    .then((response) => response.json())
-    .then((response) => console.log(response.message));
-
-fetch('https://api.thecatapi.com/v1/images/search')
-    .then((response) => response.json())
-    .then((response) => console.log(response[0].url));
+fetchWeather(city);
