@@ -1,42 +1,24 @@
-// const { argv } = require('process');
+const { readFileSync, writeFileSync } = require('fs');
 
-// const options = argv[2];
+const { name, age, legal } = JSON.parse(readFileSync('data.json', 'utf-8'));
 
-// if (options === 'foo') {
-//     console.log('foo');
-// } else if (options === 'bar') {
-//     console.log('bar');
-// } else {
-//     console.log('default');
-// }
+// console.log(name);
+// console.log(age);
+// console.log(legal);
 
-// const argv = require('minimist')(process.argv.slice(2));
+// const myData = {
+//     name: 'Justine',
+//     age: 27,
+//     legal: true,
+// };
 
-// console.log(argv);
-// console.log(argv.name);
-// console.log(argv.a);
+// const objectToJson = JSON.stringify(myData);
 
-const argv = require('yargs/yargs')(process.argv.slice(2))
-    .usage('Usage: $0 <command> [options]')
-    .command('count', 'Count the lines in a file')
-    .example('$0 count -f foo.js', 'count the lines in the given file')
-    .alias('f', 'file')
-    .nargs('f', 1)
-    .describe('f', 'Load a file')
-    .demandOption(['f'])
-    .help('h')
-    .alias('h', 'help')
-    .epilog('copyright 2019')
-    .parse();
+// console.log(objectToJson);
 
-const fs = require('fs');
-const s = fs.createReadStream(argv.file);
+// writeFileSync('myData.json', objectToJson);
 
-let lines = 0;
-s.on('data', function (buf) {
-    lines += buf.toString().match(/\n/g).length;
-});
-
-s.on('end', function () {
-    console.log(lines);
-});
+const myData = JSON.parse(readFileSync('myData.json', 'utf-8'));
+myData.name = 'Pierre';
+const objectToJson = JSON.stringify(myData);
+writeFileSync('myData.json', objectToJson);
