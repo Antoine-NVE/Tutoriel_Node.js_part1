@@ -13,6 +13,7 @@
     },
     "dependencies": {
         "minimist": "^1.2.8",
+        "postman-request": "^2.88.1-postman.33",
         "yargs": "^17.7.2"
     }
 }
