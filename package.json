@@ -8,12 +8,7 @@
     },
     "author": "",
     "license": "ISC",
-    "devDependencies": {
-        "chalk": "^4.1.2"
-    },
     "dependencies": {
-        "minimist": "^1.2.8",
-        "postman-request": "^2.88.1-postman.33",
-        "yargs": "^17.7.2"
+        "express": "^5.0.0-beta.2"
     }
 }
