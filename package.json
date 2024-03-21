@@ -9,6 +9,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "express": "^5.0.0-beta.2"
+        "express": "^5.0.0-beta.2",
+        "express-handlebars": "^7.1.2"
     }
 }
