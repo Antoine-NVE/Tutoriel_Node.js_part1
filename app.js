@@ -24,6 +24,28 @@ app.get('/about', (req, res) => {
     });
 });
 
+// app.get(/\/about\/.*/, (req, res) => {
+//     res.render('404_about', {
+//         title: '404_about',
+//     });
+// });
+
+app.get(/.*/, (req, res) => {
+    res.render('404', {
+        title: '404',
+    });
+});
+
+// app.use((req, res, next) => {
+//     res.status(404).render('404', {
+//         title: 404,
+//     });
+// });
+
+app.use((req, res, next) => {
+    res.status(500).send('Erreur 500');
+});
+
 app.listen(port, () => {
     console.log('App listening on port ' + port);
 });
