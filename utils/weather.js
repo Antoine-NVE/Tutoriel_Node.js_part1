@@ -5,7 +5,11 @@ const weather = (location, callback) => {
             if (response.errors) {
                 const { errors } = response;
                 callback(
-                    `Impossible de renvoyer vos informations. Error ${errors[0].code} : ${errors[0].text}.`,
+                    {
+                        code: errors[0].code,
+                        text: errors[0].text,
+                        description: errors[0].description,
+                    },
                     undefined
                 );
             } else {
