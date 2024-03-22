@@ -1,5 +1,6 @@
 const path = require('path');
 const { engine } = require('express-handlebars');
+const { weather } = require('./utils/weather.js');
 const express = require('express');
 
 const app = express();
@@ -11,6 +12,16 @@ app.set('view engine', 'handlebars');
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
+    const { location } = req.query;
+
+    if (!location) {
+        return res.send("Une erreur s'est produite, il manque la localisation");
+    }
+
+    weather(location, (err, data) => {
+        console.log(err, data);
+    });
+
     res.render('home', {
         title: 'Home',
         age: 30,
