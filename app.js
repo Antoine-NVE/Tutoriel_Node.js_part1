@@ -12,19 +12,18 @@ app.set('view engine', 'handlebars');
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
+    res.render('home');
+});
+
+app.get('/weather', (req, res) => {
     const { location } = req.query;
 
-    if (!location) {
-        return res.send("Une erreur s'est produite, il manque la localisation");
-    }
-
     weather(location, (err, data) => {
-        console.log(err, data);
-    });
+        if (err) {
+            res.send(`Une erreur s'est produite : ${err}`);
+        }
 
-    res.render('home', {
-        title: 'Home',
-        age: 30,
+        res.send(data);
     });
 });
 

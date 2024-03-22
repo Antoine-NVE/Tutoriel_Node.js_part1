@@ -10,10 +10,13 @@ const weather = (location, callback) => {
                 );
             } else {
                 const { city_info, current_condition } = response;
-                callback(
-                    undefined,
-                    `Le nom de la ville est ${city_info.name}. Elle est située en ${city_info.country}. Nous sommes le ${current_condition.date} et il est ${current_condition.hour}. La température est de ${current_condition.tmp}° C. `
-                );
+                callback(undefined, {
+                    location: city_info.name,
+                    country: city_info.country,
+                    date: current_condition.date,
+                    hour: current_condition.hour,
+                    temperature: current_condition.tmp,
+                });
             }
         });
 };
